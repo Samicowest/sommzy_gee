@@ -18,12 +18,7 @@ function Snooker() {
     setModal(value);
   };
 
-  useEffect(() => {
-    // Play audio once it loads
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
-  }, []);
+ 
 
   useEffect(() => {
     const timer = setTimeout(() => {

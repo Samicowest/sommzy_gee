@@ -43,10 +43,6 @@ function SettingModal({ setModalOpen }) {
           {isPlaying ? <HiMiniSpeakerXMark /> : <HiSpeakerWave />}
           {isPlaying ? "Mute " : "Music"}
         </p>
-        <p>
-          <FaCheck />
-          Sound
-        </p>
       </div>
     </div>
   );

@@ -14,13 +14,35 @@ export const BallContextProvider = ({ children }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
 
+  const [isMuted, setIsMuted] = useState(true); // Start as muted
+
+  useEffect(() => {
+    // Attempt to play the audio once it loads, muted
+    const playAudio = async () => {
+      try {
+        if (audioRef.current) {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        }
+      } catch (error) {
+        console.log("Autoplay failed, waiting for user interaction.");
+      }
+    };
+    playAudio();
+  }, []);
+
   const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
+    if (audioRef.current) {
+      if (isMuted) {
+        audioRef.current.muted = false;
+        setIsMuted(false);
+        setIsPlaying(true);
+      } else {
+        audioRef.current.muted = true;
+        setIsMuted(true);
+        setIsPlaying(false);
+      }
     }
-    setIsPlaying(!isPlaying);
   };
 
   const activeImage = data.find((item) => item.key === isActive)?.image;
