@@ -14,7 +14,7 @@ export const BallContextProvider = ({ children }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   const toggleAudio = () => {
     if (audioRef.current) {

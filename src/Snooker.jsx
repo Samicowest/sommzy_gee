@@ -25,7 +25,7 @@ function Snooker() {
           audioRef.current.muted = true;
           await audioRef.current.play();
           setIsPlaying(true);
-          setIsMuted(true);
+          setIsMuted(false);
         }
       } catch (error) {
         console.log("Autoplay failed, waiting for user interaction.");
