@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import { HiMiniSpeakerXMark } from "react-icons/hi2";
+import { HiSpeakerWave } from "react-icons/hi2";
 
 import { MdClose } from "react-icons/md";
 import { data } from "../data";
@@ -38,7 +40,7 @@ function SettingModal({ setModalOpen }) {
       <br />
       <div className="options">
         <p id="stop" onClick={toggleAudio}>
-          <FaCheck />
+          {isPlaying ? <HiMiniSpeakerXMark /> : <HiSpeakerWave />}
           {isPlaying ? "Mute " : "Music"}
         </p>
         <p>
