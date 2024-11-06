@@ -3,15 +3,15 @@ import { FaCheck } from "react-icons/fa";
 
 import { MdClose } from "react-icons/md";
 import { data } from "../data";
+import { useBallContext } from "../context";
 
 function SettingModal({ setModalOpen }) {
-  const [isActive, setIsActive] = useState(1);
-
-  const activeImage = data.find((item) => item.key === isActive)?.image;
-
+  const { setIsActive, activeImage, toggleAudio, isPlaying } = useBallContext();
   const changeUser = (dat) => {
     setIsActive(dat);
   };
+
+  const data1 = data.filter((dat) => dat.key !== 9);
 
   return (
     <div className="setting-modal">
@@ -25,7 +25,7 @@ function SettingModal({ setModalOpen }) {
           <img src={activeImage} alt="" />
         </span>
         <ul className="d-option">
-          {data.map((dat) => {
+          {data1.map((dat) => {
             return (
               <li key={dat.key} onClick={() => changeUser(dat.key)}>
                 <img src={dat.image} alt="" />
@@ -37,9 +37,9 @@ function SettingModal({ setModalOpen }) {
       <br />
       <br />
       <div className="options">
-        <p id="stop">
+        <p id="stop" onClick={toggleAudio}>
           <FaCheck />
-          Music
+          {isPlaying ? "Mute " : "Music"}
         </p>
         <p>
           <FaCheck />

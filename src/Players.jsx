@@ -4,8 +4,10 @@ import Icon from "./assets/icon.png";
 import Av1 from "./assets/avatar/av1.jpg";
 import QuestionMark from "./assets/avatar/question-mark.png";
 import { FiMenu } from "react-icons/fi";
+import { useBallContext } from "./context";
 
 function Players({ setModal }) {
+  const { activeImage } = useBallContext();
   return (
     <div className="users">
       <div
@@ -31,7 +33,7 @@ function Players({ setModal }) {
       </div>
       <div className="player-2">
         <span className="a-box">
-          <img src={QuestionMark} height="100%" alt="" />
+          <img src={activeImage ?? QuestionMark} height="100%" alt="" />
         </span>
         <span className="info">
           <p className="p-name">You</p>
