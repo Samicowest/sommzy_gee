@@ -10,13 +10,20 @@ function Snooker() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modal, setModal] = useState("setting");
   const [isActive, setIsActive] = useState(1);
-  const { audioRef, toggleAudio } = useBallContext();
+  const { audioRef } = useBallContext();
   const handleOpen = (value) => {
     console.log("clicked open");
     console.log(value); // Corrected typo here
     setModalOpen(true);
     setModal(value);
   };
+
+  useEffect(() => {
+    // Play audio once it loads
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {

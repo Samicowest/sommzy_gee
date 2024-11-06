@@ -14,13 +14,6 @@ export const BallContextProvider = ({ children }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  useEffect(() => {
-    // Play audio once it loads
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
-  }, []);
-
   const toggleAudio = () => {
     if (isPlaying) {
       audioRef.current.pause();
