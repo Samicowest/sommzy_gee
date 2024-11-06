@@ -10,7 +10,7 @@ function Snooker() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modal, setModal] = useState("setting");
   const [isActive, setIsActive] = useState(1);
-  const { audioRef } = useBallContext();
+  const { audioRef, setIsMuted, setIsPlaying } = useBallContext();
   const handleOpen = (value) => {
     console.log("clicked open");
     console.log(value); // Corrected typo here
@@ -18,7 +18,26 @@ function Snooker() {
     setModal(value);
   };
 
- 
+  useEffect(() => {
+    const handleUserInteraction = async () => {
+      try {
+        if (audioRef.current) {
+          audioRef.current.muted = true;
+          await audioRef.current.play();
+          setIsPlaying(true);
+          setIsMuted(true);
+        }
+      } catch (error) {
+        console.log("Autoplay failed, waiting for user interaction.");
+      }
+
+      window.removeEventListener("click", handleUserInteraction);
+    };
+
+    window.addEventListener("click", handleUserInteraction);
+
+    return () => window.removeEventListener("click", handleUserInteraction);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {

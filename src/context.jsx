@@ -16,27 +16,6 @@ export const BallContextProvider = ({ children }) => {
 
   const [isMuted, setIsMuted] = useState(true);
 
-  useEffect(() => {
-    const handleUserInteraction = async () => {
-      try {
-        if (audioRef.current) {
-          audioRef.current.muted = true;
-          await audioRef.current.play();
-          setIsPlaying(true);
-          setIsMuted(true);
-        }
-      } catch (error) {
-        console.log("Autoplay failed, waiting for user interaction.");
-      }
-
-      window.removeEventListener("click", handleUserInteraction);
-    };
-
-    window.addEventListener("click", handleUserInteraction);
-
-    return () => window.removeEventListener("click", handleUserInteraction);
-  }, []);
-
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isMuted) {
@@ -62,6 +41,7 @@ export const BallContextProvider = ({ children }) => {
         audioRef,
         toggleAudio,
         isPlaying,
+        setIsMuted,
       }}
     >
       {children}
