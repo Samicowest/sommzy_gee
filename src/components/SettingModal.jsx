@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaCheck } from "react-icons/fa";
+
 import av1 from "../assets/avatar/av1.jpg";
 import av3 from "../assets/avatar/av3.jpg";
 import av5 from "../assets/avatar/av5.jpg";
@@ -23,8 +25,6 @@ function SettingModal({ setModalOpen }) {
   const activeImage = data.find((item) => item.key === isActive)?.image;
 
   const changeUser = (dat) => {
-    console.log("change user");
-    console.log(dat);
     setIsActive(dat);
   };
 
@@ -53,10 +53,12 @@ function SettingModal({ setModalOpen }) {
       <br />
       <div className="options">
         <p id="stop">
-          <i className="fa fa-check"></i> Music
+          <FaCheck />
+          Music
         </p>
         <p>
-          <i className="fa fa-check"></i> Sound
+          <FaCheck />
+          Sound
         </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import loadingImg from "./assets/8-ball-logo.png";
-import BackgroundImage from "./assets/bg2.png";
+import BackgroundImage from "./assets/bg.png";
 
 function Loading() {
   return (
@@ -8,10 +8,11 @@ function Loading() {
       className="welcome"
       style={{
         backgroundImage: `url(${BackgroundImage})`,
-        backgroundSize: "cover", // Optional: cover the entire div
-        // backgroundPosition: "center", // Optional: center the image
-        // width: "100%", // Set width and height as needed
-        // height: "100vh", // Set background image
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        width: "100%",
+        height: "100vh",
       }}
     >
       <div>

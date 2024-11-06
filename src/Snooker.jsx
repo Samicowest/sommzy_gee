@@ -1,6 +1,6 @@
 import Board from "./Board";
 import Players from "./Players";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "./Modal";
 
 function Snooker() {
