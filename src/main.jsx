@@ -13,9 +13,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
   },
+
   {
-    path: "/wonder",
-    element: <div>Wonderful </div>,
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
