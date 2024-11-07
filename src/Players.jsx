@@ -6,7 +6,7 @@ import QuestionMark from "./assets/avatar/question-mark.png";
 import { FiMenu } from "react-icons/fi";
 import { useBallContext } from "./context";
 
-function Players({ setModal }) {
+function Players({ setModal, data }) {
   const { activeImage } = useBallContext();
   return (
     <div className="users">
@@ -24,8 +24,8 @@ function Players({ setModal }) {
       </div>
       <div className="player-1">
         <span className="info">
-          <p className="p-name">Player 1</p>
-          <p className="price">$1000</p>
+          <p className="p-name">{data.name}</p>
+          <p className="price">{data.money}</p>
         </span>
         <span className="a-box">
           <img src={Av1} height="100%" alt="" />

@@ -13,6 +13,7 @@ export const BallContextProvider = ({ children }) => {
   const [isActive, setIsActive] = useState(9);
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [id, setId] = useState(null);
 
   const [isMuted, setIsMuted] = useState(false);
 
@@ -42,6 +43,8 @@ export const BallContextProvider = ({ children }) => {
         toggleAudio,
         isPlaying,
         setIsMuted,
+        id,
+        setId,
       }}
     >
       {children}

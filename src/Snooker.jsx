@@ -4,19 +4,24 @@ import Players from "./Players";
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import { useBallContext } from "./context";
+
 import Audio from "./assets/audio.mp3";
+import { useGetPlayer } from "./service/query";
 function Snooker() {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modal, setModal] = useState("setting");
   const [isActive, setIsActive] = useState(1);
-  const { audioRef, setIsMuted, setIsPlaying } = useBallContext();
+
+  const { audioRef, setIsMuted, setIsPlaying, id } = useBallContext();
   const handleOpen = (value) => {
     console.log("clicked open");
     console.log(value); // Corrected typo here
     setModalOpen(true);
     setModal(value);
   };
+
+  const { data, isLoading } = useGetPlayer(id);
 
   useEffect(() => {
     const handleUserInteraction = async () => {
@@ -39,13 +44,13 @@ function Snooker() {
     return () => window.removeEventListener("click", handleUserInteraction);
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -65,7 +70,7 @@ function Snooker() {
       )}
       <div className="container">
         <audio ref={audioRef} src={Audio} preload="auto" />
-        <Players setModal={handleOpen} />
+        <Players setModal={handleOpen} data={data} />
         <Board setModal={handleOpen} />
       </div>
     </section>

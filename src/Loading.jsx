@@ -1,7 +1,6 @@
 import React from "react";
 import loadingImg from "./assets/8-ball-logo.png";
 import BackgroundImage from "./assets/bg.png";
-
 function Loading() {
   return (
     <div
